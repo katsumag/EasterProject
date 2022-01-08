@@ -36,16 +36,16 @@ class Cell : ItemFragment<CellState>() {
                 visibleWhen { playerProperty.booleanBinding { it == CellState.NOUGHT.ordinal } }
 
             }
-
-            //click action
-            setOnMouseClicked {
-                if (player == CellState.EMPTY.ordinal) {
-                    player = GameController.player.ordinal
-                    GameController.switchPlayer()
-                }
-            }
-
         }
+
+        //click action
+        setOnMouseClicked {
+            if (player == CellState.EMPTY.ordinal) {
+                player = GameController.player.ordinal
+                GameController.switchPlayer()
+            }
+        }
+
     }
 
 }
