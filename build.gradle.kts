@@ -1,5 +1,6 @@
 plugins {
     java
+    application
     kotlin("jvm") version "1.6.10"
     id("org.openjfx.javafxplugin") version "0.0.10"
 }
@@ -33,4 +34,8 @@ tasks.getByName<Test>("test") {
 javafx {
     version = "11.0.2"
     modules = mutableListOf("javafx.controls", "javafx.graphics")
+}
+
+application {
+    mainClassName = "me.katsumag.easterproject.EasterAppKt"
 }
