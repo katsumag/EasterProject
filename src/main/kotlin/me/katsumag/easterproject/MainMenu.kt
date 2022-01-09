@@ -13,7 +13,7 @@ class MainMenu : View() {
 
         left = vbox {
             useMaxSize = true
-            button("Naughts & Crosses") {
+            button("Noughts & Crosses") {
                 action { NoughtsAndCrosses().openWindow() }
             }
         }
