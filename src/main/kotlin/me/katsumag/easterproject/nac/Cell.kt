@@ -10,6 +10,11 @@ class Cell : ItemFragment<CellState>() {
     private val playerProperty = SimpleIntegerProperty(CellState.EMPTY.ordinal)
     var player by playerProperty
 
+    init {
+        //Workaround because I can't get a Cell instance from addCell as it returns a Button.
+        GameController.cells.add(this)
+    }
+
     override val root = button {
         prefWidth = 60.0
         prefHeight = 60.0
@@ -44,6 +49,7 @@ class Cell : ItemFragment<CellState>() {
                 player = GameController.player.ordinal
                 GameController.switchPlayer()
             }
+            GameController.checkCells()
         }
 
     }
