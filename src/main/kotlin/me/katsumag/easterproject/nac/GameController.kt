@@ -24,15 +24,6 @@ object GameController {
 
     private fun sortVerticalCells(): List<List<Cell>> {
 
-        /*
-        Python code to convert - taken from AoC D3P1
-        cols = [[] for _ in range(len(inputt[0]))]
-
-        for i in range(len(inputt)):
-            for col in range(len(inputt[i].strip())):
-                cols[col].append(inputt[i].strip()[col])
-         */
-
         val verticalCells = mutableListOf<MutableList<Cell>>(mutableListOf(), mutableListOf(), mutableListOf())
 
         for (i in horizontalCells.indices) {
@@ -45,11 +36,15 @@ object GameController {
     }
 
     private fun sortNeededDiagonals(): List<List<Cell>> {
-        //TODO: Not Implemented
-        return emptyList()
+        return listOf(
+          listOf(this.horizontalCells[0][0], this.horizontalCells[1][1], this.horizontalCells[2][2])
+          listOf(this.horizontalCells[0][2], this.horizontalCells[1][1], this.horizontalCells[2][0])
+        ) 
     }
 
     fun checkCells(): Boolean {
+
+        //TODO: Find better way to do this.
 
         if (firstCheck) {
             firstCheck = false
@@ -60,7 +55,15 @@ object GameController {
 
         }
 
+        if (checkList(horizontalCells)) { return true }
+        if (checkList(verticalCells)) { return true }
+        if (checkList(diagonalCells)) { return true }
+
         return false
+    }
+
+    private fun checkList(listt: List<List<Cell>>) {
+        return (!(verticalCells.filter { it.all { it.player } }.isNullOrEmpty()))
     }
 
 }
