@@ -37,7 +37,7 @@ object GameController {
 
     private fun sortNeededDiagonals(): List<List<Cell>> {
         return listOf(
-          listOf(this.horizontalCells[0][0], this.horizontalCells[1][1], this.horizontalCells[2][2])
+          listOf(this.horizontalCells[0][0], this.horizontalCells[1][1], this.horizontalCells[2][2]),
           listOf(this.horizontalCells[0][2], this.horizontalCells[1][1], this.horizontalCells[2][0])
         ) 
     }
@@ -62,8 +62,11 @@ object GameController {
         return false
     }
 
-    private fun checkList(listt: List<List<Cell>>) {
-        return (!(verticalCells.filter { it.all { it.player } }.isNullOrEmpty()))
+    private fun checkList(listt: List<List<Cell>>): Boolean {
+        return horizontalCells.any { it.all { cell ->
+            if (cell.player == CellState.EMPTY.ordinal) { return false }
+            cell.player == it[0].player
+        } }
     }
 
 }

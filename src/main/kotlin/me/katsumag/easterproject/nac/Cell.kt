@@ -49,7 +49,9 @@ class Cell : ItemFragment<CellState>() {
                 player = GameController.player.ordinal
                 GameController.switchPlayer()
             }
-            GameController.checkCells()
+             if (GameController.checkCells()) {
+                 println("WIN")
+             }
         }
 
     }
